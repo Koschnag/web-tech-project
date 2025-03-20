@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privatbank Mustermann</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            margin-bottom: 0;
+        }
+
+        .jumbotron {
+            background-color: #f8f9fa;
+            padding: 2rem 1rem;
+            text-align: left;
+            margin-top: 56px; /* Ensure the jumbotron is not at the top of the screen */
+        }
+
+        .jumbotron .container {
+            max-width: 1140px; /* Align with the container width */
+        }
+
+        .col-md-3 {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            padding: 1rem 0;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-item.active .nav-link {
+            font-weight: bold;
+        }
+
+        .navbar-nav .dropdown-menu {
+            background-color: #f8f9fa;
+        }
+
+        .navbar-nav .dropdown-item {
+            color: #000;
+        }
+
+        .navbar-nav .dropdown-item:hover {
+            background-color: #e9ecef;
+        }
+
+        .container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .navbar-container, .footer-container {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container navbar-container">
+            <a class="navbar-brand" href="#">Privatbank Mustermann</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Startseite <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kredite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Konto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Aktien</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Service
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Unterpunkt 1</a>
+                            <a class="dropdown-item" href="#">Unterpunkt 2</a>
+                            <a class="dropdown-item" href="#">Unterpunkt 3</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Suche" aria-label="Suche">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suche</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4">Privatbank Mustermann</h1>
+            <p class="lead">Die Privatbank für Ihre Finanzen, jetzt kostenlose Girokonten mit vielen Extras.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">mehr Informationen »</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Kredite</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <a class="btn btn-secondary" href="#" role="button">jetzt abschließen »</a>
+            </div>
+            <div class="col-md-3">
+                <h2>Girokonto <span class="badge badge-success">Neu</span></h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <a class="btn btn-secondary" href="#" role="button">jetzt eröffnen »</a>
+            </div>
+            <div class="col-md-3">
+                <h2>Aktien</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Porta felis euismod semper.</p>
+                <a class="btn btn-secondary" href="#" role="button">jetzt investieren »</a>
+            </div>
+            <div class="col-md-3">
+                <h2>Börsenspiel</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Porta felis euismod semper.</p>
+                <a class="btn btn-warning" href="#" role="button">jetzt starten »</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-left mt-4">
+        <div class="container footer-container">
+            <p>© Cong Chanh Vinzenz Nguyen 2025</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
