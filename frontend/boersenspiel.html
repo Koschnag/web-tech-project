@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Börsenspiel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        #chart {
+            border: 1px solid #ccc;
+            width: 100%;
+            height: 300px;
+        }
+        .game-info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Börsenspiel</h1>
+        <canvas id="chart"></canvas>
+        <div class="game-info">
+            <p>Aktuelle Kurse: <span id="briefkurs">100.00</span> Euro (Brief) - <span id="geldkurs">99.00</span> Euro (Geld)</p>
+            <p>Kontostand: <span id="balance">50000.00</span> Euro</p>
+            <p>Anzahl Aktien im Besitz: <span id="stocksOwned">0</span></p>
+            <p>Gewinn/Verlust: <span id="profitLoss">0.00</span> Euro</p>
+        </div>
+        <div class="controls">
+            <button id="startGame" class="btn btn-primary">Spiel starten</button>
+            <input type="number" id="stockAmount" class="form-control d-inline-block w-auto" placeholder="Anzahl Aktien">
+            <button id="buyStock" class="btn btn-success">Aktien kaufen</button>
+            <button id="sellStock" class="btn btn-danger">Aktien verkaufen</button>
+            <button id="endGame" class="btn btn-secondary">Spiel beenden</button>
+        </div>
+        <div id="marketStatus" class="alert alert-info mt-3 d-none"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="boerse.js"></script>
+</body>
+</html>
