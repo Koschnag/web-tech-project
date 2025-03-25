@@ -16,6 +16,8 @@ let consecutiveChanges = 0;
 let lastChangeDirection = null;
 let isBullMarket = false;
 let isBearMarket = false;
+let gameSpeed = 1000; // Default speed: 1 second
+let isPaused = false;
 
 // Initialize Chart.js
 const ctx = document.getElementById('chart').getContext('2d');
@@ -41,12 +43,11 @@ const chart = new Chart(ctx, {
 });
 
 function updatePrices() {
-    let change = (Math.random() * 0.05).toFixed(2);
-    change = parseFloat(change) * (Math.random() < 0.5 ? -1 : 1);
+    if (isPaused) return;
 
-    // Adjust probabilities for bull/bear market
-    if (isBullMarket) change = Math.abs(change);
-    if (isBearMarket) change = -Math.abs(change);
+    let change = (Math.random() * 0.05).toFixed(2);
+    const isBullish = Math.random() < (isBullMarket ? 0.75 : isBearMarket ? 0.25 : 0.5);
+    change = parseFloat(change) * (isBullish ? 1 : -1);
 
     briefkurs = parseFloat((briefkurs + change).toFixed(2));
     geldkurs = parseFloat((briefkurs - 1).toFixed(2));
@@ -152,17 +153,32 @@ function updateUI() {
     profitLossEl.textContent = profitLoss.toFixed(2);
 }
 
+function adjustGameSpeed(newSpeed) {
+    gameSpeed = newSpeed;
+    clearInterval(gameInterval);
+    gameInterval = setInterval(updatePrices, gameSpeed);
+}
+
+function togglePause() {
+    isPaused = !isPaused;
+    document.getElementById('pauseGame').textContent = isPaused ? 'Fortsetzen' : 'Pause';
+}
+
 function startGame() {
-    gameInterval = setInterval(updatePrices, 1000);
+    gameInterval = setInterval(updatePrices, gameSpeed);
     document.getElementById('startGame').disabled = true;
+    document.getElementById('pauseGame').disabled = false;
 }
 
 function endGame() {
     clearInterval(gameInterval);
     alert(`Spiel beendet! Endgültiger Gewinn/Verlust: ${profitLoss.toFixed(2)} Euro`);
+    document.getElementById('pauseGame').disabled = true;
 }
 
 document.getElementById('startGame').addEventListener('click', startGame);
 document.getElementById('buyStock').addEventListener('click', buyStock);
 document.getElementById('sellStock').addEventListener('click', sellStock);
 document.getElementById('endGame').addEventListener('click', endGame);
+document.getElementById('pauseGame').addEventListener('click', togglePause);
+document.getElementById('speedControl').addEventListener('change', (e) => adjustGameSpeed(parseInt(e.target.value)));

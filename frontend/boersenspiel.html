@@ -23,6 +23,13 @@
             <button id="buyStock" class="btn btn-success">Aktien kaufen</button>
             <button id="sellStock" class="btn btn-danger">Aktien verkaufen</button>
             <button id="endGame" class="btn btn-secondary">Spiel beenden</button>
+            <button id="pauseGame" class="btn btn-warning" disabled>Pause</button>
+            <label for="speedControl" class="ml-3">Geschwindigkeit:</label>
+            <select id="speedControl" class="form-control d-inline-block w-auto">
+                <option value="500">Schnell (0.5s)</option>
+                <option value="1000" selected>Normal (1s)</option>
+                <option value="2000">Langsam (2s)</option>
+            </select>
         </div>
         <div id="marketStatus" class="alert alert-info mt-3 d-none"></div>
     </div>
