@@ -43,7 +43,7 @@ const chart = new Chart(ctx, {
 });
 
 function updatePrices() {
-    if (isPaused) return;
+    if (isPaused) return; // Ensure the game respects the pause state
 
     let change = (Math.random() * 0.05).toFixed(2);
     const isBullish = Math.random() < (isBullMarket ? 0.75 : isBearMarket ? 0.25 : 0.5);
@@ -51,6 +51,10 @@ function updatePrices() {
 
     briefkurs = parseFloat((briefkurs + change).toFixed(2));
     geldkurs = parseFloat((briefkurs - 1).toFixed(2));
+
+    // Ensure prices don't fall below a reasonable threshold
+    if (briefkurs < 1) briefkurs = 1;
+    if (geldkurs < 0) geldkurs = 0;
 
     // Track consecutive changes
     const direction = change > 0 ? 'up' : 'down';
