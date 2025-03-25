@@ -101,33 +101,44 @@ function updateMarketStatus(direction) {
     }
 }
 
-// Refactor buyStock and sellStock to use calculateFee
-function buyStock() {
-    const amount = parseInt(document.getElementById('stockAmount').value);
-    if (isNaN(amount) || amount <= 0) return alert('Bitte geben Sie eine gültige Anzahl ein.');
+function handleStockTransaction(type, amount) {
+    if (isNaN(amount) || amount <= 0) {
+        return alert('Bitte geben Sie eine gültige Anzahl ein.');
+    }
 
-    const cost = amount * briefkurs;
-    const totalCost = cost + calculateFee(cost);
+    const price = type === 'buy' ? briefkurs : geldkurs;
+    const total = amount * price;
+    const fee = calculateFee(total);
+    const finalAmount = type === 'buy' ? total + fee : total - fee;
 
-    if (totalCost > balance) return alert('Nicht genügend Guthaben.');
+    if (type === 'buy' && finalAmount > balance) {
+        return alert('Nicht genügend Guthaben.');
+    }
 
-    balance -= totalCost;
-    stocksOwned += amount;
+    if (type === 'sell' && amount > stocksOwned) {
+        return alert('Ungültige Anzahl.');
+    }
+
+    if (type === 'buy') {
+        balance -= finalAmount;
+        stocksOwned += amount;
+    } else {
+        balance += finalAmount;
+        stocksOwned -= amount;
+    }
+
     updateProfitLoss();
     updateUI();
 }
 
+function buyStock() {
+    const amount = parseInt(document.getElementById('stockAmount').value);
+    handleStockTransaction('buy', amount);
+}
+
 function sellStock() {
     const amount = parseInt(document.getElementById('stockAmount').value);
-    if (isNaN(amount) || amount <= 0 || amount > stocksOwned) return alert('Ungültige Anzahl.');
-
-    const revenue = amount * geldkurs;
-    const totalRevenue = revenue - calculateFee(revenue);
-
-    balance += totalRevenue;
-    stocksOwned -= amount;
-    updateProfitLoss();
-    updateUI();
+    handleStockTransaction('sell', amount);
 }
 
 function updateProfitLoss() {

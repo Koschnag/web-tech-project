@@ -65,3 +65,21 @@ footer {
     max-width: 1140px;
     margin: 0 auto;
 }
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.is-invalid + .invalid-feedback {
+    display: block;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}

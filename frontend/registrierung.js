@@ -4,6 +4,18 @@ function sanitizeInput(input) {
     return temp.innerHTML;
 }
 
+function showValidationError(elementId, condition, errorMessage) {
+    const element = document.getElementById(elementId);
+    if (condition) {
+        element.classList.add('is-invalid');
+        element.nextElementSibling.textContent = errorMessage;
+        return false;
+    } else {
+        element.classList.remove('is-invalid');
+        return true;
+    }
+}
+
 document.getElementById('registrationForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -18,30 +30,27 @@ document.getElementById('registrationForm').addEventListener('submit', function 
     let isValid = true;
 
     // Validate email match
-    if (email !== confirmEmail) {
-        document.getElementById('confirmEmail').classList.add('is-invalid');
-        isValid = false;
-    } else {
-        document.getElementById('confirmEmail').classList.remove('is-invalid');
-    }
+    isValid &= showValidationError(
+        'confirmEmail',
+        email !== confirmEmail,
+        'Die E-Mail-Adressen stimmen nicht überein.'
+    );
 
     // Validate age
     const birthDateObj = new Date(birthDate);
     const age = new Date().getFullYear() - birthDateObj.getFullYear();
-    if (isNaN(age) || age < 18) {
-        document.getElementById('birthDate').classList.add('is-invalid');
-        isValid = false;
-    } else {
-        document.getElementById('birthDate').classList.remove('is-invalid');
-    }
+    isValid &= showValidationError(
+        'birthDate',
+        isNaN(age) || age < 18,
+        'Sie müssen mindestens 18 Jahre alt sein.'
+    );
 
     // Validate ZIP code
-    if (!/^\d{5}$/.test(zipCode)) {
-        document.getElementById('zipCode').classList.add('is-invalid');
-        isValid = false;
-    } else {
-        document.getElementById('zipCode').classList.remove('is-invalid');
-    }
+    isValid &= showValidationError(
+        'zipCode',
+        !/^\d{5}$/.test(zipCode),
+        'Bitte geben Sie eine gültige fünfstellige PLZ ein.'
+    );
 
     if (isValid) {
         // Store data in local storage

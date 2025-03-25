@@ -49,6 +49,22 @@ http://localhost
   - `nginx/`: Nginx configuration files.
   - `Dockerfile`: Docker configuration for the frontend.
 
+## Testing
+
+To ensure the application works as expected, perform the following tests:
+1. **Registration Form**:
+   - Test all validation rules (e.g., email matching, age restriction, ZIP code format).
+   - Verify that valid inputs display the success message.
+2. **Stock Market Game**:
+   - Test buying and selling stocks with various amounts.
+   - Verify that fees are calculated correctly.
+   - Check the chart updates and market status messages.
+
+## Known Issues
+
+- The application does not currently support localization for non-German languages.
+- The stock market game does not save progress after a page refresh.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
