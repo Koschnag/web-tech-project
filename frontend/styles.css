@@ -61,9 +61,9 @@ footer {
 }
 
 .container {
-    padding-left: 15px;
-    padding-right: 15px;
-    max-width: 900px;
+    padding-left: 0; /* Remove extra padding */
+    padding-right: 0; /* Remove extra padding */
+    max-width: 1140px; /* Align with the navbar and footer containers */
 }
 
 .navbar-container, .footer-container {
