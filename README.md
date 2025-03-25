@@ -43,6 +43,7 @@ http://localhost
   - `index.html`: Main landing page.
   - `registrierung.html`: User registration page.
   - `boersenspiel.html`: Stock market simulation game.
+  - `styles.css`: Shared CSS styles.
   - `boerse.js`: JavaScript logic for the stock market game.
   - `registrierung.js`: JavaScript logic for user registration.
   - `nginx/`: Nginx configuration files.

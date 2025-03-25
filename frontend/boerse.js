@@ -62,19 +62,7 @@ function updatePrices() {
 
     // Check for bull/bear market
     if (consecutiveChanges >= 3) {
-        if (direction === 'up') {
-            isBullMarket = true;
-            isBearMarket = false;
-            marketStatusEl.textContent = 'Bullenmarkt!';
-            marketStatusEl.classList.remove('d-none', 'alert-danger');
-            marketStatusEl.classList.add('alert-success');
-        } else {
-            isBearMarket = true;
-            isBullMarket = false;
-            marketStatusEl.textContent = 'Bärenmarkt!';
-            marketStatusEl.classList.remove('d-none', 'alert-success');
-            marketStatusEl.classList.add('alert-danger');
-        }
+        updateMarketStatus(direction);
     } else {
         isBullMarket = false;
         isBearMarket = false;
@@ -93,13 +81,33 @@ function updatePrices() {
     chart.update();
 }
 
+function calculateFee(amount) {
+    return Math.min(Math.max(4.95 + amount * 0.0025, 9.99), 59.99);
+}
+
+function updateMarketStatus(direction) {
+    if (direction === 'up') {
+        isBullMarket = true;
+        isBearMarket = false;
+        marketStatusEl.textContent = 'Bullenmarkt!';
+        marketStatusEl.classList.remove('d-none', 'alert-danger');
+        marketStatusEl.classList.add('alert-success');
+    } else {
+        isBearMarket = true;
+        isBullMarket = false;
+        marketStatusEl.textContent = 'Bärenmarkt!';
+        marketStatusEl.classList.remove('d-none', 'alert-success');
+        marketStatusEl.classList.add('alert-danger');
+    }
+}
+
+// Refactor buyStock and sellStock to use calculateFee
 function buyStock() {
     const amount = parseInt(document.getElementById('stockAmount').value);
     if (isNaN(amount) || amount <= 0) return alert('Bitte geben Sie eine gültige Anzahl ein.');
 
     const cost = amount * briefkurs;
-    const fee = Math.min(Math.max(4.95 + cost * 0.0025, 9.99), 59.99);
-    const totalCost = cost + fee;
+    const totalCost = cost + calculateFee(cost);
 
     if (totalCost > balance) return alert('Nicht genügend Guthaben.');
 
@@ -114,8 +122,7 @@ function sellStock() {
     if (isNaN(amount) || amount <= 0 || amount > stocksOwned) return alert('Ungültige Anzahl.');
 
     const revenue = amount * geldkurs;
-    const fee = Math.min(Math.max(4.95 + revenue * 0.0025, 9.99), 59.99);
-    const totalRevenue = revenue - fee;
+    const totalRevenue = revenue - calculateFee(revenue);
 
     balance += totalRevenue;
     stocksOwned -= amount;

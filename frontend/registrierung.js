@@ -1,13 +1,19 @@
+function sanitizeInput(input) {
+    const temp = document.createElement('div');
+    temp.textContent = input;
+    return temp.innerHTML;
+}
+
 document.getElementById('registrationForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const salutation = document.getElementById('salutation').value;
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const confirmEmail = document.getElementById('confirmEmail').value;
-    const birthDate = document.getElementById('birthDate').value;
-    const zipCode = document.getElementById('zipCode').value;
+    const salutation = sanitizeInput(document.getElementById('salutation').value);
+    const firstName = sanitizeInput(document.getElementById('firstName').value);
+    const lastName = sanitizeInput(document.getElementById('lastName').value);
+    const email = sanitizeInput(document.getElementById('email').value);
+    const confirmEmail = sanitizeInput(document.getElementById('confirmEmail').value);
+    const birthDate = sanitizeInput(document.getElementById('birthDate').value);
+    const zipCode = sanitizeInput(document.getElementById('zipCode').value);
 
     let isValid = true;
 
