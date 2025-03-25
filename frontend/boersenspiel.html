@@ -9,29 +9,43 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Börsenspiel</h1>
-        <canvas id="chart"></canvas>
-        <div class="game-info">
-            <p>Aktuelle Kurse: <span id="briefkurs">100.00</span> Euro (Brief) - <span id="geldkurs">99.00</span> Euro (Geld)</p>
-            <p>Kontostand: <span id="balance">50000.00</span> Euro</p>
-            <p>Anzahl Aktien im Besitz: <span id="stocksOwned">0</span></p>
-            <p>Gewinn/Verlust: <span id="profitLoss">0.00</span> Euro</p>
+        <h1 class="text-center mb-4">Börsenspiel</h1>
+        <div class="row">
+            <div class="col-12">
+                <canvas id="chart"></canvas>
+            </div>
         </div>
-        <div class="controls">
-            <button id="startGame" class="btn btn-primary">Spiel starten</button>
-            <input type="number" id="stockAmount" class="form-control d-inline-block w-auto" placeholder="Anzahl Aktien">
-            <button id="buyStock" class="btn btn-success">Aktien kaufen</button>
-            <button id="sellStock" class="btn btn-danger">Aktien verkaufen</button>
-            <button id="endGame" class="btn btn-secondary">Spiel beenden</button>
-            <button id="pauseGame" class="btn btn-warning" disabled>Pause</button>
-            <label for="speedControl" class="ml-3">Geschwindigkeit:</label>
-            <select id="speedControl" class="form-control d-inline-block w-auto">
-                <option value="500">Schnell (0.5s)</option>
-                <option value="1000" selected>Normal (1s)</option>
-                <option value="2000">Langsam (2s)</option>
-            </select>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="game-info">
+                    <p><strong>Aktuelle Kurse:</strong> <span id="briefkurs">100.00</span> Euro (Brief) - <span id="geldkurs">99.00</span> Euro (Geld)</p>
+                    <p><strong>Kontostand:</strong> <span id="balance">50000.00</span> Euro</p>
+                    <p><strong>Anzahl Aktien im Besitz:</strong> <span id="stocksOwned">0</span></p>
+                    <p><strong>Gewinn/Verlust:</strong> <span id="profitLoss">0.00</span> Euro</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="marketStatus" class="alert alert-info d-none text-center"></div>
+            </div>
         </div>
-        <div id="marketStatus" class="alert alert-info mt-3 d-none"></div>
+        <div class="row controls">
+            <div class="col-12 col-md-6">
+                <button id="startGame" class="btn btn-primary btn-block">Spiel starten</button>
+                <button id="pauseGame" class="btn btn-warning btn-block" disabled>Pause</button>
+                <button id="endGame" class="btn btn-secondary btn-block">Spiel beenden</button>
+            </div>
+            <div class="col-12 col-md-6">
+                <input type="number" id="stockAmount" class="form-control mb-2" placeholder="Anzahl Aktien">
+                <button id="buyStock" class="btn btn-success btn-block">Aktien kaufen</button>
+                <button id="sellStock" class="btn btn-danger btn-block">Aktien verkaufen</button>
+                <label for="speedControl" class="mt-2">Geschwindigkeit:</label>
+                <select id="speedControl" class="form-control">
+                    <option value="500">Schnell (0.5s)</option>
+                    <option value="1000" selected>Normal (1s)</option>
+                    <option value="2000">Langsam (2s)</option>
+                </select>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="boerse.js"></script>
