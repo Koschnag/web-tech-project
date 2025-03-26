@@ -4,6 +4,8 @@ const balanceEl = document.getElementById('balance');
 const stocksOwnedEl = document.getElementById('stocksOwned');
 const profitLossEl = document.getElementById('profitLoss');
 const marketStatusEl = document.getElementById('marketStatus');
+const stockAmountInput = document.getElementById('stockAmount');
+const calculatedFeeEl = document.getElementById('calculatedFee');
 
 let briefkurs = 100.0;
 let geldkurs = 99.0;
@@ -187,9 +189,22 @@ function endGame() {
     document.getElementById('pauseGame').disabled = true;
 }
 
+function updateCalculatedFee() {
+    const amount = parseInt(stockAmountInput.value);
+    if (isNaN(amount) || amount <= 0) {
+        calculatedFeeEl.textContent = '0.00';
+        return;
+    }
+    const price = briefkurs; // Use briefkurs for fee calculation
+    const total = amount * price;
+    const fee = calculateFee(total);
+    calculatedFeeEl.textContent = fee.toFixed(2);
+}
+
 document.getElementById('startGame').addEventListener('click', startGame);
 document.getElementById('buyStock').addEventListener('click', buyStock);
 document.getElementById('sellStock').addEventListener('click', sellStock);
 document.getElementById('endGame').addEventListener('click', endGame);
 document.getElementById('pauseGame').addEventListener('click', togglePause);
 document.getElementById('speedControl').addEventListener('change', (e) => adjustGameSpeed(parseInt(e.target.value)));
+stockAmountInput.addEventListener('input', updateCalculatedFee);
