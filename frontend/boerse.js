@@ -18,6 +18,8 @@ let isBullMarket = false;
 let isBearMarket = false;
 let gameSpeed = 1000; // Default speed: 1 second
 let isPaused = false;
+let gameDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
+let gameTimeout;
 
 // Initialize Chart.js
 const ctx = document.getElementById('chart').getContext('2d');
@@ -170,12 +172,17 @@ function togglePause() {
 
 function startGame() {
     gameInterval = setInterval(updatePrices, gameSpeed);
+    gameTimeout = setTimeout(() => {
+        endGame();
+        alert('Das Spiel ist nach 10 Minuten automatisch beendet.');
+    }, gameDuration);
     document.getElementById('startGame').disabled = true;
     document.getElementById('pauseGame').disabled = false;
 }
 
 function endGame() {
     clearInterval(gameInterval);
+    clearTimeout(gameTimeout);
     alert(`Spiel beendet! Endgültiger Gewinn/Verlust: ${profitLoss.toFixed(2)} Euro`);
     document.getElementById('pauseGame').disabled = true;
 }
