@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!--TITLE--></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container navbar-container">
+            <a class="navbar-brand" href="/" data-link><!--TITLE--></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Startseite <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kredite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Konto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Aktien</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Service
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Unterpunkt 1</a>
+                            <a class="dropdown-item" href="#">Unterpunkt 2</a>
+                            <a class="dropdown-item" href="#">Unterpunkt 3</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Suche" aria-label="Suche">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suche</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-4"><!--TITLE--></h1>
+            <p class="lead"><!--LEAD_TEXT--></p>
+            <a class="btn btn-primary btn-lg" href="/mehr-informationen" data-link role="button">mehr Informationen »</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Kredite</h2>
+                <p><!--CREDIT_TEXT--></p>
+                <a class="btn btn-secondary" href="/kredite" data-link role="button">jetzt abschließen »</a>
+            </div>
+            <div class="col-md-3">
+                <h2>Girokonto <span class="badge badge-success">Neu</span></h2>
+                <p><!--GIROKONTO_TEXT--></p>
+                <a class="btn btn-secondary" href="/girokonto" data-link role="button">jetzt eröffnen »</a>
+            </div>
+            <div class="col-md-3">
+                <h2>Aktien</h2>
+                <p><!--AKTIEN_TEXT--></p>
+                <a class="btn btn-secondary" href="/aktien" data-link role="button">jetzt investieren »</a>
+            </div>
+            <div class="col-md-3">
+                <h2>Börsenspiel</h2>
+                <p><!--BOERSSPIEL_TEXT--></p>
+                <a class="btn btn-warning" href="/registrierung" data-link role="button">jetzt starten »</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-left mt-4">
+        <div class="container footer-container">
+            <p>© Cong Chanh Vinzenz Nguyen 2025</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module">
+        import { IndexViewModel } from '../viewModels/indexViewModel.js';
+        const viewModel = new IndexViewModel();
+        viewModel.renderNavigation();
+    </script>
+</body>
+</html>

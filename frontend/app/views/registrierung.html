@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privatbank Mustermann - Registrierung</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container navbar-container">
+            <a class="navbar-brand" href="#">Privatbank Mustermann</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Startseite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kredite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Konto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Aktien</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Service
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Unterpunkt 1</a>
+                            <a class="dropdown-item" href="#">Unterpunkt 2</a>
+                            <a class="dropdown-item" href="#">Unterpunkt 3</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Suche" aria-label="Suche">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suche</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron mt-5">
+        <div class="container">
+            <h1 class="display-4">Registrierung</h1>
+            <p class="lead">Erstellen Sie ein Konto, um alle Vorteile der Privatbank Mustermann zu nutzen.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="salutation">Anrede</label>
+                <select class="form-control" id="salutation" required>
+                    <option>Herr</option>
+                    <option>Frau</option>
+                    <option>Divers</option>
+                </select>
+                <div class="invalid-feedback">Bitte wählen Sie eine Anrede aus.</div>
+            </div>
+            <div class="form-group">
+                <label for="firstName">Vorname</label>
+                <input type="text" class="form-control" id="firstName" placeholder="Vorname" required>
+                <div class="invalid-feedback">Bitte geben Sie Ihren Vornamen ein.</div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Nachname</label>
+                <input type="text" class="form-control" id="lastName" placeholder="Nachname" required>
+                <div class="invalid-feedback">Bitte geben Sie Ihren Nachnamen ein.</div>
+            </div>
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="email" class="form-control" id="email" placeholder="E-Mail" required>
+                <div class="invalid-feedback">Bitte geben Sie eine gültige E-Mail-Adresse ein.</div>
+            </div>
+            <div class="form-group">
+                <label for="confirmEmail">E-Mail bestätigen</label>
+                <input type="email" class="form-control" id="confirmEmail" placeholder="E-Mail bestätigen" required>
+                <div class="invalid-feedback">Die E-Mail-Adressen stimmen nicht überein.</div>
+            </div>
+            <div class="form-group">
+                <label for="birthDate">Geburtsdatum</label>
+                <input type="date" class="form-control" id="birthDate" required>
+                <div class="invalid-feedback">Sie müssen mindestens 18 Jahre alt sein.</div>
+            </div>
+            <div class="form-group">
+                <label for="zipCode">PLZ</label>
+                <input type="text" class="form-control" id="zipCode" placeholder="PLZ" required>
+                <div class="invalid-feedback">Bitte geben Sie eine gültige fünfstellige PLZ ein.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrieren</button>
+        </form>
+        <div id="successMessage" class="alert alert-success mt-3 d-none">
+            Registrierung erfolgreich! <a href="/boersenspiel" data-link class="btn btn-link">Weiter zum Börsenspiel</a>
+        </div>
+    </div>
+
+    <footer class="text-left mt-4">
+        <div class="container footer-container">
+            <p>© Cong Chanh Vinzenz Nguyen 2025</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="module">
+        import { RegistrationViewModel } from '../viewModels/registrationViewModel.js';
+
+        const viewModel = new RegistrationViewModel({
+            showErrors: (errors) => {
+                Object.keys(errors).forEach((field) => {
+                    const element = document.getElementById(field);
+                    element.classList.add('is-invalid');
+                    element.nextElementSibling.textContent = errors[field];
+                });
+            },
+            showSuccessMessage: () => {
+                document.getElementById('registrationForm').classList.add('d-none');
+                document.getElementById('successMessage').classList.remove('d-none');
+            },
+        });
+
+        document.getElementById('registrationForm').addEventListener('input', (event) => {
+            const element = document.getElementById(event.target.id);
+            element.classList.remove('is-invalid');
+            viewModel.handleInputChange(event.target.id, event.target.value);
+        });
+
+        document.getElementById('registrationForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            viewModel.handleSubmit();
+        });
+    </script>
+</body>
+</html>

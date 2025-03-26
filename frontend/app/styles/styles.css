@@ -1,0 +1,80 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: var(--background-color);
+}
+
+.jumbotron {
+    background-color: var(--background-color);
+    padding: 2rem 1rem;
+    text-align: left;
+    margin-top: 56px; /* Ensure the jumbotron is not at the top of the screen */
+}
+
+.jumbotron .container {
+    max-width: 1140px; /* Align with the container width */
+}
+
+footer {
+    padding: 1rem 0;
+}
+
+.navbar-container, .footer-container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.is-invalid + .invalid-feedback {
+    display: block;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.dark-mode {
+    --background-color: #343a40;
+    --text-color: #f8f9fa;
+    --primary-color: #17a2b8;
+    --secondary-color: #6c757d;
+}
+
+@media (max-width: 767.98px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
