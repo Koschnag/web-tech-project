@@ -27,6 +27,7 @@
             </div>
             <div class="col-md-6">
                 <div id="marketStatus" class="alert alert-info d-none text-center"></div>
+                <div id="crashTimer" class="alert alert-warning d-none text-center mt-2"></div> <!-- New crash timer element -->
             </div>
         </div>
         <div class="row controls">
@@ -34,6 +35,7 @@
                 <button id="startGame" class="btn btn-primary btn-block">Spiel starten</button>
                 <button id="pauseGame" class="btn btn-warning btn-block" disabled>Pause</button>
                 <button id="endGame" class="btn btn-secondary btn-block">Spiel beenden</button>
+                <button id="triggerCrash" class="btn btn-danger btn-block mt-2">Börsencrash auslösen</button>
             </div>
             <div class="col-12 col-md-6">
                 <input type="number" id="stockAmount" class="form-control mb-2" placeholder="Anzahl Aktien">

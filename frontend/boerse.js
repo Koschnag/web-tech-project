@@ -6,6 +6,7 @@ const profitLossEl = document.getElementById('profitLoss');
 const marketStatusEl = document.getElementById('marketStatus');
 const stockAmountInput = document.getElementById('stockAmount');
 const calculatedFeeEl = document.getElementById('calculatedFee');
+const crashTimerEl = document.getElementById('crashTimer'); // New element for crash timer
 
 let briefkurs = 100.0;
 let geldkurs = 99.0;
@@ -22,6 +23,8 @@ let gameSpeed = 1000; // Default speed: 1 second
 let isPaused = false;
 let gameDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
 let gameTimeout;
+let isMarketCrash = false;
+let crashTimerInterval;
 
 // Initialize Chart.js
 const ctx = document.getElementById('chart').getContext('2d');
@@ -46,10 +49,33 @@ const chart = new Chart(ctx, {
     }
 });
 
+// Function to trigger the Börsencrash
+function triggerMarketCrash() {
+    if (isMarketCrash) return; // Prevent multiple crashes at the same time
+
+    isMarketCrash = true;
+    let remainingTime = 10; // 10 seconds duration
+
+    crashTimerEl.textContent = `Börsencrash! Verbleibende Zeit: ${remainingTime}s`;
+    crashTimerEl.classList.remove('d-none', 'alert-success', 'alert-danger');
+    crashTimerEl.classList.add('alert-warning');
+
+    crashTimerInterval = setInterval(() => {
+        remainingTime--;
+        if (remainingTime > 0) {
+            crashTimerEl.textContent = `Börsencrash! Verbleibende Zeit: ${remainingTime}s`;
+        } else {
+            clearInterval(crashTimerInterval);
+            isMarketCrash = false;
+            crashTimerEl.classList.add('d-none');
+        }
+    }, 1000);
+}
+
 function updatePrices() {
     if (isPaused) return; // Ensure the game respects the pause state
 
-    let change = (Math.random() * 0.05).toFixed(2);
+    let change = (Math.random() * (isMarketCrash ? 0.2 : 0.05)).toFixed(2); // Larger changes during crash
     const isBullish = Math.random() < (isBullMarket ? 0.75 : isBearMarket ? 0.25 : 0.5);
     change = parseFloat(change) * (isBullish ? 1 : -1);
 
@@ -208,3 +234,4 @@ document.getElementById('endGame').addEventListener('click', endGame);
 document.getElementById('pauseGame').addEventListener('click', togglePause);
 document.getElementById('speedControl').addEventListener('change', (e) => adjustGameSpeed(parseInt(e.target.value)));
 stockAmountInput.addEventListener('input', updateCalculatedFee);
+document.getElementById('triggerCrash').addEventListener('click', triggerMarketCrash);
